@@ -10,21 +10,10 @@ public class Limpiadora extends Obrera {
 
     @Override
     public void run() {
-        main();
-    }
-
-    public void main(){
         while(true){
-            int nuevaZona = -1;
-            int tiempoParaLaTarea = 0;
-            if(nuevaZona == -1) {
-                tiempoParaLaTarea = new Random().nextInt(3, 11);
-            }
-
             try {
-                System.out.println("Empezando");
-                Thread.sleep(tiempoParaLaTarea * 1000);
-                System.out.println("Terminando");
+                System.out.print("-".repeat(80) + "\n");
+                System.out.println("Buscando a la reina de la colmena");
 
                 Socket socket = new Socket("127.0.0.1", 3000);
 
@@ -35,15 +24,22 @@ public class Limpiadora extends Obrera {
                 DataInputStream dataInputStream = new DataInputStream(inputStream);
 
                 dataOutputStream.writeUTF("Limpiadora");
-                nuevaZona = dataInputStream.read();
 
-                System.out.println("Limpiando la zona " + nuevaZona);
+                System.out.println("Preguntando por la nueva zona");
+                int nuevaZona = dataInputStream.read();
+                System.out.println("Nueva zona: " + nuevaZona);
+
+                int tiempoParaLaTarea = new Random().nextInt(3, 11);
+
+                System.out.println("Empezando la limpieza de la zona " +  nuevaZona + ". Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
+
+                Thread.sleep(tiempoParaLaTarea * 1000);
+
+                System.out.println("Nueva zona limpiada");
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-
-            System.out.println(tiempoParaLaTarea);
         }
     }
 }

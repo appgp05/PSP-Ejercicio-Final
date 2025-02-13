@@ -1,4 +1,4 @@
 package Abejas;
 
-public class Obrera extends Thread{
+public class Obrera extends Thread {
 }
