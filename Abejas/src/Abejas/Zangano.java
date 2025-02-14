@@ -32,7 +32,7 @@ public class Zangano extends Thread {
 
                 System.out.println("Buscando una nodriza");
 
-                Socket socket = new Socket("127.0.0.1", 3000);
+                Socket socket = new Socket("127.0.0.1", 3001);
 
                 OutputStream outputStream = socket.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
@@ -40,7 +40,11 @@ public class Zangano extends Thread {
                 InputStream inputStream = socket.getInputStream();
                 DataInputStream dataInputStream = new DataInputStream(inputStream);
 
-                dataOutputStream.writeUTF("Zangano");
+                int nodriza = dataInputStream.read();
+
+                socket = new Socket("127.0.0.1", 3001 + nodriza);
+
+//                dataOutputStream.writeUTF("Zangano");
 
                 System.out.println("Esperando el alimento");
                 Boolean haComido = dataInputStream.readBoolean();

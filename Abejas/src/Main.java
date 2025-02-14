@@ -25,7 +25,7 @@ public class Main {
         Recolectora recolectora2 = new Recolectora();
         Recolectora recolectora3 = new Recolectora();
 
-//        limpiadora1.start();
+        limpiadora1.start();
 //        limpiadora2.start();
 //        limpiadora3.start();
 
@@ -33,7 +33,7 @@ public class Main {
 //        zangano2.start();
 //        zangano3.start();
 
-        nodriza1.start();
+//        nodriza1.start();
 //        nodriza2.start();
 //        nodriza3.start();
 //        nodriza4.start();
