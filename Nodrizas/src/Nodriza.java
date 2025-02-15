@@ -39,22 +39,26 @@ public class Nodriza extends Obrera {
             try {
                 System.out.print("-".repeat(80) + "\n");
 
+                System.out.println("Nodriza " + idNodriza + " - " + "Esperando a un Zángano");
+
                 Socket socketCliente = socketServidor.accept();
 
                 OutputStream outputStream = socketCliente.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
+                System.out.println("Nodriza " + idNodriza + " - Zángano encontrdo");
+
                 int tiempoParaLaTarea = new Random().nextInt(3, 6);
 
-                System.out.println("La nodriza " + getIdNodriza() + " está alimentando a un zángano. Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
+                System.out.println("Nodriza " + idNodriza + " - Alimentando a un zángano. Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
 
                 Thread.sleep(tiempoParaLaTarea * 1000);
 
                 dataOutputStream.writeBoolean(true);
 
-                System.out.println("Zángano alimentado");
+                System.out.println("Nodriza " + idNodriza + " - Zángano alimentado");
 
-                System.out.println("La nodriza " + getIdNodriza() + " está descansando hasta que llegue un nuevo zángano");
+                System.out.println("Nodriza " + idNodriza + " - Descansando hasta que llegue un nuevo zángano");
 
                 setDisponible(true);
 //                interrupt();

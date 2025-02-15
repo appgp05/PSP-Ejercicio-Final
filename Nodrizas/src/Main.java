@@ -35,6 +35,8 @@ public class Main {
                         atenderRecolectora();
                         break;
                 }
+
+                System.out.println("Abeja atendida");
             }
 
         } catch (Exception e) {
