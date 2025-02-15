@@ -15,17 +15,11 @@ public class Main {
         Zangano zangano2 = new Zangano();
         Zangano zangano3 = new Zangano();
 
-        Nodriza nodriza1 = new Nodriza(1);
-        Nodriza nodriza2 = new Nodriza(2);
-        Nodriza nodriza3 = new Nodriza(3);
-        Nodriza nodriza4 = new Nodriza(4);
-        Nodriza nodriza5 = new Nodriza(5);
-
         Recolectora recolectora1 = new Recolectora();
         Recolectora recolectora2 = new Recolectora();
         Recolectora recolectora3 = new Recolectora();
 
-        limpiadora1.start();
+//        limpiadora1.start();
 //        limpiadora2.start();
 //        limpiadora3.start();
 
@@ -33,15 +27,9 @@ public class Main {
 //        zangano2.start();
 //        zangano3.start();
 
-//        nodriza1.start();
-//        nodriza2.start();
-//        nodriza3.start();
-//        nodriza4.start();
-//        nodriza5.start();
-
-//        recolectora1.start();
-//        recolectora2.start();
-//        recolectora3.start();
+        recolectora1.start();
+        recolectora2.start();
+        recolectora3.start();
 
     }
 }

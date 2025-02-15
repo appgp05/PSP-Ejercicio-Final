@@ -26,13 +26,13 @@ public class Recolectora extends Obrera {
 
                 System.out.println("Entrando a la colmena");
 
-                Socket socket = new Socket("127.0.0.1", 3000);
-
-                OutputStream outputStream = socket.getOutputStream();
-                DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+                Socket socket = new Socket("127.0.0.1", 3001);
 
                 InputStream inputStream = socket.getInputStream();
                 DataInputStream dataInputStream = new DataInputStream(inputStream);
+
+                OutputStream outputStream = socket.getOutputStream();
+                DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
                 dataOutputStream.writeUTF("Recolectora");
 

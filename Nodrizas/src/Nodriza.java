@@ -35,7 +35,7 @@ public class Nodriza extends Obrera {
 
     @Override
     public void run() {
-//        while(true){
+        while(isDisponible()) {
             try {
                 System.out.print("-".repeat(80) + "\n");
 
@@ -54,14 +54,14 @@ public class Nodriza extends Obrera {
 
                 System.out.println("Zángano alimentado");
 
+                System.out.println("La nodriza " + getIdNodriza() + " está descansando hasta que llegue un nuevo zángano");
+
                 setDisponible(true);
-
-                System.out.println("La nodriza " + getIdNodriza() + "está descansando hasta que llegue un nuevo zángano");
-
+//                interrupt();
 //                break;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-//        }
+        }
     }
 }

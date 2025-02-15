@@ -22,39 +22,29 @@ public class Main {
 
             while(true) {
                 System.out.println("-".repeat(20));
-                System.out.println("Esperando una abeja");
+                System.out.println("Reina esperando una abeja");
                 socketCliente = socketServidor.accept();
-                System.out.println("Gestionando la abeja");
+                System.out.println("Reina atendiendo a la abeja");
 
                 InputStream inputStream = socketCliente.getInputStream();
                 DataInputStream dataInputStream = new DataInputStream(inputStream);
 
                 String tipoAbeja = dataInputStream.readUTF();
 
-                manejarAbeja(tipoAbeja);
-                System.out.println("Abeja gestionada");
+                atenderAbeja(tipoAbeja);
+                System.out.println("Abeja atendida");
 
-                System.out.println("Esperando");
-                Thread.sleep(000);
-                System.out.println("Espera terminada");
+//                System.out.println("Esperando");
+//                Thread.sleep(3000);
+//                System.out.println("Espera terminada");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static void manejarAbeja(String tipoAbeja){
+    private static void atenderAbeja(String tipoAbeja){
         switch (tipoAbeja){
-            case "Zangano":
-                try {
-                    OutputStream outputStream = socketCliente.getOutputStream();
-                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-
-                    dataOutputStream.writeBoolean(manejarZangano());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                break;
             case "Limpiadora":
                 try {
                     OutputStream outputStream = socketCliente.getOutputStream();
@@ -65,56 +55,64 @@ public class Main {
                     throw new RuntimeException(e);
                 }
                 break;
-            case "Nodriza":
-                try {
-                    InputStream inputStream = socketCliente.getInputStream();
-                    DataInputStream dataInputStream = new DataInputStream(inputStream);
-
-                    int idNodriza = dataInputStream.readInt();
-
-                    manejarNodriza(idNodriza);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
-
-                break;
-            case "Recolectora":
-                OutputStream outputStream = null;
-                try {
-                    outputStream = socketCliente.getOutputStream();
-                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-
-                    dataOutputStream.writeBoolean(manejarRecolectora());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                break;
+//            case "Zangano":
+//                try {
+//                    OutputStream outputStream = socketCliente.getOutputStream();
+//                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+//
+//                    dataOutputStream.writeBoolean(manejarZangano());
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
+//                break;
+//            case "Nodriza":
+//                try {
+//                    InputStream inputStream = socketCliente.getInputStream();
+//                    DataInputStream dataInputStream = new DataInputStream(inputStream);
+//
+//                    int idNodriza = dataInputStream.readInt();
+//
+//                    manejarNodriza(idNodriza);
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
+//                break;
+//            case "Recolectora":
+//                OutputStream outputStream = null;
+//                try {
+//                    outputStream = socketCliente.getOutputStream();
+//                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+//
+//                    dataOutputStream.writeBoolean(manejarRecolectora());
+//                } catch (Exception e) {
+//                    throw new RuntimeException(e);
+//                }
+//                break;
         }
-    }
-
-    private static boolean manejarZangano(){
-        return true;
     }
 
     private static int manejarLimpiadora(String tipoAbeja){
         return (int) reina.ordenarAAbeja(tipoAbeja);
     }
 
-    private static void manejarNodriza(int id){
-        boolean nodrizaEnColmena = false;
-        for(Nodriza nodriza : nodrizas) {
-            if (nodriza.getId() == id) {
-                nodrizaEnColmena = true;
-                break;
-            }
-        }
-        if(!nodrizaEnColmena){
-            nodrizas.add(new Nodriza(id, true));
-        }
-    }
-
-    private static boolean manejarRecolectora(){
-        return true;
-    }
+//    private static boolean manejarZangano(){
+//        return true;
+//    }
+//
+//    private static void manejarNodriza(int id){
+//        boolean nodrizaEnColmena = false;
+//        for(Nodriza nodriza : nodrizas) {
+//            if (nodriza.getId() == id) {
+//                nodrizaEnColmena = true;
+//                break;
+//            }
+//        }
+//        if(!nodrizaEnColmena){
+//            nodrizas.add(new Nodriza(id, true));
+//        }
+//    }
+//
+//    private static boolean manejarRecolectora(){
+//        return true;
+//    }
 }

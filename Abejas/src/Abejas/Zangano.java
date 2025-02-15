@@ -24,7 +24,6 @@ public class Zangano extends Thread {
 
                 if(reinaEncontrada == 10){
                     System.out.println("Reina encontrada");
-                    seguirBuscando = false;
                     break;
                 } else {
                     System.out.println("No se ha encontrado ninguna reina");
@@ -40,11 +39,16 @@ public class Zangano extends Thread {
                 InputStream inputStream = socket.getInputStream();
                 DataInputStream dataInputStream = new DataInputStream(inputStream);
 
+                dataOutputStream.writeUTF("Zangano");
+
                 int nodriza = dataInputStream.read();
+
+                System.out.println("Nodriza encontrada: " + nodriza);
 
                 socket = new Socket("127.0.0.1", 3001 + nodriza);
 
-//                dataOutputStream.writeUTF("Zangano");
+                inputStream = socket.getInputStream();
+                dataInputStream = new DataInputStream(inputStream);
 
                 System.out.println("Esperando el alimento");
                 Boolean haComido = dataInputStream.readBoolean();
