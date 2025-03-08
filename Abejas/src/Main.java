@@ -28,11 +28,11 @@ public class Main {
 //        limpiadora4.start();
 //        limpiadora5.start();
 
-//        zangano1.start();
-//        zangano2.start();
-//        zangano3.start();
-//        zangano4.start();
-//        zangano5.start();
+        zangano1.start();
+        zangano2.start();
+        zangano3.start();
+        zangano4.start();
+        zangano5.start();
 
 //        recolectora1.start();
 //        recolectora2.start();
