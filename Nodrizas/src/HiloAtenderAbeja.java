@@ -59,6 +59,7 @@ public class HiloAtenderAbeja extends Thread {
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
             System.out.println("Atendiendo Recolectora - Dejando la miel");
+            Main.gestionarMiel(+1);
             dataOutputStream.writeBoolean(true);
             System.out.println("Atendiendo Recolectora - Miel dejada");
         } catch (Exception e) {

@@ -48,6 +48,11 @@ public class Nodriza extends Obrera {
 
                 System.out.println("Nodriza " + idNodriza + " - Zángano encontrdo");
 
+                System.out.println("Cogiendo miel");
+                while(!Main.gestionarMiel(-1)){
+                    Thread.sleep(1000);
+                }
+
                 int tiempoParaLaTarea = new Random().nextInt(3, 6);
 
                 System.out.println("Nodriza " + idNodriza + " - Alimentando a un zángano. Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
