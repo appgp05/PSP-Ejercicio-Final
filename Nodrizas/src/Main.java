@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Main {
 
     private static final Object lockMiel = new Object();
+    private static final Object lockEsperarReina = new Object();
     private static int mielAlmacenada = 10;
 
     private static Reina reina = new Reina();
@@ -16,8 +17,6 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            despertarReina();
-
             despertarNodrizas();
 
             ServerSocket socketServidor = new ServerSocket(3001);
@@ -39,10 +38,6 @@ public class Main {
         }
     }
 
-    private static synchronized void despertarReina(){
-        reina.start();
-    }
-
     private static synchronized void despertarNodrizas(){
         Nodriza nodriza1 = new Nodriza(1);
         Nodriza nodriza2 = new Nodriza(2);
@@ -51,7 +46,7 @@ public class Main {
         Nodriza nodriza5 = new Nodriza(5);
 
         nodrizas.add(nodriza1);
-//        nodrizas.add(nodriza2);
+        nodrizas.add(nodriza2);
 //        nodrizas.add(nodriza3);
 //        nodrizas.add(nodriza4);
 //        nodrizas.add(nodriza5);
@@ -72,11 +67,14 @@ public class Main {
         }
     }
 
-    public static synchronized boolean esperarALareina(){
-        while(true) {
-            if (reina.isDisponible()) {
-                reina.setDisponible(false);
-                return true;
+    public static Reina esperarALareina(){
+        synchronized (lockEsperarReina) {
+            while(true) {
+                if (reina.isDisponible()) {
+                    reina.setDisponible(false);
+                    lockEsperarReina.notifyAll();
+                    return reina;
+                }
             }
         }
     }
