@@ -22,7 +22,7 @@ public class Main {
         Recolectora recolectora4 = new Recolectora();
         Recolectora recolectora5 = new Recolectora();
 
-//        limpiadora1.start();
+        limpiadora1.start();
 //        limpiadora2.start();
 //        limpiadora3.start();
 //        limpiadora4.start();
