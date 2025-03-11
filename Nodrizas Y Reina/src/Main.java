@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
 
@@ -47,9 +48,9 @@ public class Main {
 
         nodrizas.add(nodriza1);
         nodrizas.add(nodriza2);
-//        nodrizas.add(nodriza3);
-//        nodrizas.add(nodriza4);
-//        nodrizas.add(nodriza5);
+        nodrizas.add(nodriza3);
+        nodrizas.add(nodriza4);
+        nodrizas.add(nodriza5);
 
         for(Nodriza nodriza : nodrizas){
             nodriza.start();
@@ -58,11 +59,10 @@ public class Main {
 
     public static synchronized Nodriza buscarNodrizas(){
         while(true) {
-            for (Nodriza nodriza : nodrizas) {
-                if (nodriza.isDisponible()) {
-                    nodriza.setDisponible(false);
-                    return nodriza;
-                }
+            int nodrizaRandom = new Random().nextInt(0, nodrizas.size());
+                if (nodrizas.get(nodrizaRandom).isDisponible()) {
+                    nodrizas.get(nodrizaRandom).setDisponible(false);
+                    return nodrizas.get(nodrizaRandom);
             }
         }
     }

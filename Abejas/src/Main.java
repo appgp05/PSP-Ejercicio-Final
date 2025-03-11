@@ -22,11 +22,11 @@ public class Main {
         Recolectora recolectora4 = new Recolectora();
         Recolectora recolectora5 = new Recolectora();
 
-        limpiadora1.start();
-        limpiadora2.start();
-        limpiadora3.start();
-        limpiadora4.start();
-        limpiadora5.start();
+//        limpiadora1.start();
+//        limpiadora2.start();
+//        limpiadora3.start();
+//        limpiadora4.start();
+//        limpiadora5.start();
 
         zangano1.start();
         zangano2.start();
@@ -34,10 +34,10 @@ public class Main {
         zangano4.start();
         zangano5.start();
 
-        recolectora1.start();
-        recolectora2.start();
-        recolectora3.start();
-        recolectora4.start();
-        recolectora5.start();
+//        recolectora1.start();
+//        recolectora2.start();
+//        recolectora3.start();
+//        recolectora4.start();
+//        recolectora5.start();
     }
 }
