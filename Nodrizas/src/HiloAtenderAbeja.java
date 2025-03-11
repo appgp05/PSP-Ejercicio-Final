@@ -62,7 +62,7 @@ public class HiloAtenderAbeja extends Thread {
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
             System.out.println("Atendiendo Zangano - Buscando nodriza");
-            Nodriza nodriza = buscarNodrizas();
+            Nodriza nodriza = Main.buscarNodrizas();
             System.out.println("Atendiendo Zangano - Nodriza encontrada");
             System.out.println("Atendiendo Zangano - Nodriza: " + nodriza.getIdNodriza());
 
@@ -83,17 +83,6 @@ public class HiloAtenderAbeja extends Thread {
             System.out.println("Atendiendo Recolectora - Miel dejada");
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private Nodriza buscarNodrizas(){
-        while(true) {
-            for (Nodriza nodriza : Main.nodrizas) {
-                if (nodriza.isDisponible()) {
-                    nodriza.setDisponible(false);
-                    return nodriza;
-                }
-            }
         }
     }
 }

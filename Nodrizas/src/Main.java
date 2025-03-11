@@ -4,7 +4,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Main {
-    private static int mielAlmacenada = 0;
+
+    private static final Object lockMiel = new Object();
+    private static int mielAlmacenada = 10;
 
     public static ArrayList<Nodriza> nodrizas = new ArrayList<>();
 
@@ -51,13 +53,29 @@ public class Main {
         }
     }
 
-    public static synchronized boolean gestionarMiel(int cantidad){
-        if(mielAlmacenada + cantidad >= 0){
-            mielAlmacenada += cantidad;
-            System.out.println("Miel almacenada en la colmena: " + mielAlmacenada);
-            return true;
-        } else {
-            return false;
+    public static boolean gestionarMiel(int cantidad){
+        synchronized (lockMiel){
+            System.out.println("MIEL ANTES DE GESTIONAR: " + mielAlmacenada);
+            if(mielAlmacenada + cantidad >= 0){
+                mielAlmacenada += cantidad;
+                System.out.println("Miel almacenada en la colmena: " + mielAlmacenada);
+                lockMiel.notifyAll();
+                return true;
+            } else {
+                lockMiel.notifyAll();
+                return false;
+            }
+        }
+    }
+
+    public static synchronized Nodriza buscarNodrizas(){
+        while(true) {
+            for (Nodriza nodriza : Main.nodrizas) {
+                if (nodriza.isDisponible()) {
+                    nodriza.setDisponible(false);
+                    return nodriza;
+                }
+            }
         }
     }
 }
