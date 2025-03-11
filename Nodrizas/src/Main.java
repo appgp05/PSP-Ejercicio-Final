@@ -8,12 +8,16 @@ public class Main {
     private static final Object lockMiel = new Object();
     private static int mielAlmacenada = 10;
 
-    public static ArrayList<Nodriza> nodrizas = new ArrayList<>();
+    private static Reina reina = new Reina();
+
+    private static ArrayList<Nodriza> nodrizas = new ArrayList<>();
 
     private static Socket socketCliente;
 
     public static void main(String[] args) {
         try {
+            despertarReina();
+
             despertarNodrizas();
 
             ServerSocket socketServidor = new ServerSocket(3001);
@@ -35,6 +39,10 @@ public class Main {
         }
     }
 
+    private static synchronized void despertarReina(){
+        reina.start();
+    }
+
     private static synchronized void despertarNodrizas(){
         Nodriza nodriza1 = new Nodriza(1);
         Nodriza nodriza2 = new Nodriza(2);
@@ -53,6 +61,26 @@ public class Main {
         }
     }
 
+    public static synchronized Nodriza buscarNodrizas(){
+        while(true) {
+            for (Nodriza nodriza : nodrizas) {
+                if (nodriza.isDisponible()) {
+                    nodriza.setDisponible(false);
+                    return nodriza;
+                }
+            }
+        }
+    }
+
+    public static synchronized boolean esperarALareina(){
+        while(true) {
+            if (reina.isDisponible()) {
+                reina.setDisponible(false);
+                return true;
+            }
+        }
+    }
+
     public static boolean gestionarMiel(int cantidad){
         synchronized (lockMiel){
             System.out.println("MIEL ANTES DE GESTIONAR: " + mielAlmacenada);
@@ -64,17 +92,6 @@ public class Main {
             } else {
                 lockMiel.notifyAll();
                 return false;
-            }
-        }
-    }
-
-    public static synchronized Nodriza buscarNodrizas(){
-        while(true) {
-            for (Nodriza nodriza : Main.nodrizas) {
-                if (nodriza.isDisponible()) {
-                    nodriza.setDisponible(false);
-                    return nodriza;
-                }
             }
         }
     }

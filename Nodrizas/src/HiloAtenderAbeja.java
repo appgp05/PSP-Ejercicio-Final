@@ -42,6 +42,9 @@ public class HiloAtenderAbeja extends Thread {
 
     private void atenderLimpiadora(){
         try {
+            System.out.println("Atendiendo Limpiadora - Esperando para hablar con la reina");
+            System.out.println("Atendiendo Limpiadora - Reina encontrada");
+
             OutputStream outputStream = socketCliente.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
