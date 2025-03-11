@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.Random;
 
 public class Zangano extends Thread {
+    private Socket socket;
+
     @Override
     public void run() {
         boolean seguirBuscando = true;
@@ -24,6 +26,7 @@ public class Zangano extends Thread {
 
                 if(reinaEncontrada == 10){
                     System.out.println("Reina encontrada");
+                    socket.close();
                     break;
                 } else {
                     System.out.println("No se ha encontrado ninguna reina");
@@ -31,7 +34,7 @@ public class Zangano extends Thread {
 
                 System.out.println("Buscando una nodriza");
 
-                Socket socket = new Socket("127.0.0.1", 3001);
+                socket = new Socket("127.0.0.1", 3001);
 
                 OutputStream outputStream = socket.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
