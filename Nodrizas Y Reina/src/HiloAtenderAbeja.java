@@ -41,10 +41,10 @@ public class HiloAtenderAbeja extends Thread {
 
     private void atenderLimpiadora(){
         try {
-            System.out.println("Atendiendo Limpiadora - Enviando con la reina");
-
             OutputStream outputStream = socketCliente.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+
+            System.out.println("Atendiendo Limpiadora - Enviando con la reina");
 
             dataOutputStream.writeInt(Main.reina.getPuertoServidor());
         } catch (Exception e) {
@@ -61,6 +61,8 @@ public class HiloAtenderAbeja extends Thread {
             Nodriza nodriza = Main.buscarNodrizas();
             System.out.println("Atendiendo Zangano - Nodriza encontrada");
             System.out.println("Atendiendo Zangano - Nodriza: " + nodriza.getIdNodriza());
+
+            System.out.println("Atendiendo Zangano - Enviando con la nodriza");
 
             dataOutputStream.write(nodriza.getIdNodriza());
         } catch (Exception e) {

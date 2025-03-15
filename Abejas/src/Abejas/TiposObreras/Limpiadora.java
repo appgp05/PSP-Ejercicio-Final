@@ -19,7 +19,7 @@ public class Limpiadora extends Obrera {
         while(true){
             try {
                 System.out.print("-".repeat(80) + "\n");
-                System.out.println("Limpiadora " + id + " - Entrando a la colmena");
+                System.out.println("Limpiadora " + id + " - Entrando a la recepcion de la colmena");
 
                 Socket socket = new Socket("127.0.0.1", 3000);
 
