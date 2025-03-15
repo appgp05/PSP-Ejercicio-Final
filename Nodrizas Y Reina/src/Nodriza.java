@@ -10,25 +10,23 @@ public class Nodriza extends Obrera {
         this.disponible = true;
 
         try {
-            this.socketServidor = new ServerSocket(3001 + idNodriza);
+            this.socketServidor = new ServerSocket(3010 + idNodriza);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private int idNodriza;
-    private boolean disponible;
-
-    private ServerSocket socketServidor;
-
     public int getIdNodriza() {
         return idNodriza;
     }
 
+    private ServerSocket socketServidor;
+
+    private boolean disponible;
     public boolean isDisponible() {
         return disponible;
     }
-
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }

@@ -1,0 +1,17 @@
+Cantidad de servidores=
+
+1 - Servidor principal
+	Servidor que recibe a TODAS las abejas y les manda el servidor correspondiente de la abeja a la que buscan
+
+X - Servidor por cada abeja que recibe solicitudes (Reina, Nodrizas, SOLDADO)
+
+
+Puertos correspondientes =
+
+Servidor principal 	= 3000
+Reina 			= 3001
+Soldado 		= 3002
+…
+
+Gestionar Nodrizas	= 3010
+Nodrizas		= 3010 + x

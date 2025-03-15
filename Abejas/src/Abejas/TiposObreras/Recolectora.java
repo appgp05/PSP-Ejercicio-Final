@@ -10,6 +10,12 @@ import java.net.Socket;
 import java.util.Random;
 
 public class Recolectora extends Obrera {
+    public Recolectora(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
     @Override
     public void run() {
         while(true){
@@ -26,7 +32,7 @@ public class Recolectora extends Obrera {
 
                 System.out.println("Entrando a la colmena");
 
-                Socket socket = new Socket("127.0.0.1", 3001);
+                Socket socket = new Socket("127.0.0.1", 3000);
 
                 InputStream inputStream = socket.getInputStream();
                 DataInputStream dataInputStream = new DataInputStream(inputStream);

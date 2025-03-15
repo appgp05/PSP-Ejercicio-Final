@@ -8,17 +8,24 @@ import java.net.Socket;
 import java.util.Random;
 
 public class Zangano extends Thread {
-    private Socket socket;
+    public Zangano(int id) {
+        this.id = id;
+    }
+
+    private int id;
+
 
     @Override
     public void run() {
         boolean seguirBuscando = true;
         while(seguirBuscando){
             try {
+                Socket socket = null;
+
                 System.out.print("-".repeat(80) + "\n");
                 int tiempoParaLaTarea = new Random().nextInt(5, 11);
 
-                System.out.println("Buscando reinas fuera de la colmena.Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
+                System.out.println("Buscando reinas fuera de la colmena. Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
 
                 Thread.sleep(tiempoParaLaTarea * 1000);
 
@@ -26,7 +33,9 @@ public class Zangano extends Thread {
 
                 if(reinaEncontrada == 10){
                     System.out.println("Reina encontrada");
-                    socket.close();
+                    if(socket != null){
+                        socket.close();
+                    }
                     break;
                 } else {
                     System.out.println("No se ha encontrado ninguna reina");
@@ -34,7 +43,7 @@ public class Zangano extends Thread {
 
                 System.out.println("Buscando una nodriza");
 
-                socket = new Socket("127.0.0.1", 3001);
+                socket = new Socket("127.0.0.1", 3000);
 
                 OutputStream outputStream = socket.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
@@ -48,7 +57,7 @@ public class Zangano extends Thread {
 
                 System.out.println("Nodriza encontrada: " + nodriza);
 
-                socket = new Socket("127.0.0.1", 3001 + nodriza);
+                socket = new Socket("127.0.0.1", 3010 + nodriza);
 
                 inputStream = socket.getInputStream();
                 dataInputStream = new DataInputStream(inputStream);

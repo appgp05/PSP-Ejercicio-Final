@@ -1,33 +1,30 @@
-import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
-
+    // Sistema de gestion de miel
     private static final Object lockMiel = new Object();
-    private static final Object lockEsperarReina = new Object();
     private static int mielAlmacenada = 10;
 
-    private static Reina reina = new Reina();
-
+    // Abejas que hay en la colmena
+    public static Reina reina = new Reina();
     private static ArrayList<Nodriza> nodrizas = new ArrayList<>();
-
-    private static Socket socketCliente;
 
     public static void main(String[] args) {
         try {
+            despertarReina();
             despertarNodrizas();
 
-            ServerSocket socketServidor = new ServerSocket(3001);
+            ServerSocket socketServidor = new ServerSocket(3000);
 
             while(true) {
                 System.out.println("-".repeat(20));
 
                 System.out.println("Esperando una abeja");
 
-                socketCliente = socketServidor.accept();
+                Socket socketCliente = socketServidor.accept();
                 HiloAtenderAbeja hiloAtender = new HiloAtenderAbeja(socketCliente);
                 hiloAtender.start();
 
@@ -39,7 +36,12 @@ public class Main {
         }
     }
 
-    private static synchronized void despertarNodrizas(){
+
+    private static void despertarReina(){
+        reina.start();
+    }
+
+    private static void despertarNodrizas(){
         Nodriza nodriza1 = new Nodriza(1);
         Nodriza nodriza2 = new Nodriza(2);
         Nodriza nodriza3 = new Nodriza(3);
@@ -47,10 +49,10 @@ public class Main {
         Nodriza nodriza5 = new Nodriza(5);
 
         nodrizas.add(nodriza1);
-        nodrizas.add(nodriza2);
-        nodrizas.add(nodriza3);
-        nodrizas.add(nodriza4);
-        nodrizas.add(nodriza5);
+//        nodrizas.add(nodriza2);
+//        nodrizas.add(nodriza3);
+//        nodrizas.add(nodriza4);
+//        nodrizas.add(nodriza5);
 
         for(Nodriza nodriza : nodrizas){
             nodriza.start();
@@ -63,18 +65,6 @@ public class Main {
                 if (nodrizas.get(nodrizaRandom).isDisponible()) {
                     nodrizas.get(nodrizaRandom).setDisponible(false);
                     return nodrizas.get(nodrizaRandom);
-            }
-        }
-    }
-
-    public static Reina esperarALareina(){
-        synchronized (lockEsperarReina) {
-            while(true) {
-                if (reina.isDisponible()) {
-                    reina.setDisponible(false);
-                    lockEsperarReina.notifyAll();
-                    return reina;
-                }
             }
         }
     }
