@@ -8,12 +8,14 @@ import java.net.Socket;
 import java.util.Random;
 
 public class Zangano extends Thread {
-    public Zangano(int id) {
+    public Zangano(int id, String contrasena) {
         this.id = id;
+        this.contrasena = contrasena;
     }
 
     private int id;
 
+    private String contrasena;
 
     @Override
     public void run() {
@@ -52,6 +54,35 @@ public class Zangano extends Thread {
                 DataInputStream dataInputStream = new DataInputStream(inputStream);
 
                 dataOutputStream.writeUTF("Zangano");
+
+                System.out.println("Zangano " + id + " - Preguntando por el soldado");
+
+                int soldado = dataInputStream.readInt();
+                System.out.println("asdasd" + soldado);
+                Socket socketHablarSoldado = new Socket("127.0.0.1", 3030 + soldado);
+
+                OutputStream outputStreamHablarSoldado = socketHablarSoldado.getOutputStream();
+                DataOutputStream dataOutputStreamHablarSoldado = new DataOutputStream(outputStreamHablarSoldado);
+
+                InputStream inputStreamHablarSoldado = socketHablarSoldado.getInputStream();
+                DataInputStream dataInputStreamHablarSoldado = new DataInputStream(inputStreamHablarSoldado);
+
+                System.out.println("Zangano " + id + " - Diciendo la contrasena al soldado");
+
+                dataOutputStreamHablarSoldado.writeUTF(contrasena);
+
+                System.out.println("Esperando la respuesta del soldado");
+
+                boolean conoceContrasena = dataInputStreamHablarSoldado.readBoolean();
+
+                if(!conoceContrasena){
+                    System.out.println("Zangano " + id + " - No conozco la contrasena");
+                    dataOutputStream.writeBoolean(conoceContrasena);
+                    break;
+                } else {
+                    System.out.println("Zangano " + id + " - Conozco la contrasena");
+                    dataOutputStream.writeBoolean(conoceContrasena);
+                }
 
                 System.out.println("Zangano " + id + " - Preguntando por una nodriza");
 

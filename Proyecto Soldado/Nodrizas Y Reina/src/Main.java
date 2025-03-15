@@ -11,11 +11,13 @@ public class Main {
     // Abejas que hay en la colmena
     public static Reina reina = new Reina();
     private static ArrayList<Nodriza> nodrizas = new ArrayList<>();
+    public static Soldado soldado = new Soldado(1);
 
     public static void main(String[] args) {
         try {
             despertarReina();
             despertarNodrizas();
+            despertarSoldao();
 
             ServerSocket socketServidor = new ServerSocket(3000);
 
@@ -57,6 +59,10 @@ public class Main {
         for(Nodriza nodriza : nodrizas){
             nodriza.start();
         }
+    }
+
+    private static void despertarSoldao(){
+        soldado.start();
     }
 
     public static synchronized Nodriza buscarNodrizas(){

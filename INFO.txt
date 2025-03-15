@@ -1,17 +1,19 @@
-Cantidad de servidores=
+------------Cantidad de servidores------------
 
 1 - Servidor principal
-	Servidor que recibe a TODAS las abejas y les manda el servidor correspondiente de la abeja a la que buscan
+	Servidor que recibe a TODAS las abejas cliente y les manda el servidor correspondiente de la abeja a la que buscan.
+
+	En el caso del examen los zánganos y las recolectoras entraran al servidor principal, éste les devolverá el puerto del soldado, el soldado le dirá a los zánganos y recolectoras si saben la contraseña, y éstos se lo dirán al servidor principal, con lo que si la saben el servidor principal les devolverá la abeja que necesitan, en el caso de un zángano le devolverá una nodriza.
 
 X - Servidor por cada abeja que recibe solicitudes (Reina, Nodrizas, SOLDADO)
 
 
-Puertos correspondientes =
+------------Puertos correspondientes------------
 
 Servidor principal 	= 3000
 Reina 			= 3001
-Soldado 		= 3002
 …
 
-Gestionar Nodrizas	= 3010
 Nodrizas		= 3010 + x
+
+Soldados		= 3030 + x

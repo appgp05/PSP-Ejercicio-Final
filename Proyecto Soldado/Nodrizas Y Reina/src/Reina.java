@@ -13,6 +13,8 @@ public class Reina extends Thread {
         }
     }
 
+    private String contrasena = "coa17";
+
     private int puertoServidor = 3001;
 
     public int getPuertoServidor() {
@@ -50,6 +52,13 @@ public class Reina extends Thread {
 
                         System.out.println("Reina - Indicando la nueva zona a la abeja");
                         dataOutputStream.writeUTF(nuevaZona);
+
+                        break;
+
+                    case "Soldado":
+                        System.out.println("diciendo la contraseña");
+
+                        dataOutputStream.writeUTF(contrasena);
 
                         break;
                 }

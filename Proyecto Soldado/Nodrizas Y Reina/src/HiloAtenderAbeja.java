@@ -54,8 +54,26 @@ public class HiloAtenderAbeja extends Thread {
 
     private void atenderZangano(){
         try {
+            InputStream inputStream = socketCliente.getInputStream();
+            DataInputStream dataInputStream = new DataInputStream(inputStream);
+
             OutputStream outputStream = socketCliente.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+
+            System.out.println("Atendiendo Zangano - Enviando con el soldado");
+
+            dataOutputStream.writeInt(Main.soldado.getIdSoldado());
+
+            System.out.println("Atendiendo Zangano - Mirando si sabe la contrasena");
+
+            boolean conoceLaContrasena = dataInputStream.readBoolean();
+
+            if(!conoceLaContrasena){
+                System.out.println("El Zangano no conoce la contrasena");
+                return;
+            } else {
+                System.out.println("El Zangano conoce la contrasena");
+            }
 
             System.out.println("Atendiendo Zangano - Buscando nodriza");
             Nodriza nodriza = Main.buscarNodrizas();
@@ -72,8 +90,26 @@ public class HiloAtenderAbeja extends Thread {
 
     private void atenderRecolectora(){
         try {
+            InputStream inputStream = socketCliente.getInputStream();
+            DataInputStream dataInputStream = new DataInputStream(inputStream);
+
             OutputStream outputStream = socketCliente.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+
+            System.out.println("Atendiendo Zangano - Enviando con el soldado");
+
+            dataOutputStream.writeInt(Main.soldado.getIdSoldado());
+
+            System.out.println("Atendiendo Zangano - Mirando si sabe la contrasena");
+
+            boolean conoceLaContrasena = dataInputStream.readBoolean();
+
+            if(!conoceLaContrasena){
+                System.out.println("El Zangano no conoce la contrasena");
+                return;
+            } else {
+                System.out.println("El Zangano conoce la contrasena");
+            }
 
             System.out.println("Atendiendo Recolectora - Dejando la miel");
             Main.gestionarMiel(+1);
