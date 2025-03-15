@@ -52,9 +52,7 @@ public class Limpiadora extends Obrera {
                 int tiempoParaLaTarea = new Random().nextInt(3, 11);
 
                 System.out.println("Limpiadora " + id + " - Empezando la limpieza de la zona " +  nuevaZona + ". Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
-
                 Thread.sleep(tiempoParaLaTarea * 1000);
-
                 System.out.println("Limpiadora " + id + " - Nueva zona limpiada");
 
                 {
@@ -64,7 +62,6 @@ public class Limpiadora extends Obrera {
                     outputStream.close();
                     dataOutputStream.close();
                 }
-
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

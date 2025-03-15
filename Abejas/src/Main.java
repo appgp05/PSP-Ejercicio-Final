@@ -23,20 +23,20 @@ public class Main {
         Recolectora recolectora5 = new Recolectora(5);
 
         limpiadora1.start();
-        limpiadora2.start();
-        limpiadora3.start();
-        limpiadora4.start();
-        limpiadora5.start();
+//        limpiadora2.start();
+//        limpiadora3.start();
+//        limpiadora4.start();
+//        limpiadora5.start();
 
 //        zangano1.start();
 //        zangano2.start();
-//        zangano3.start();
+        zangano3.start();
 //        zangano4.start();
 //        zangano5.start();
 
 //        recolectora1.start();
 //        recolectora2.start();
-//        recolectora3.start();
+        recolectora3.start();
 //        recolectora4.start();
 //        recolectora5.start();
     }

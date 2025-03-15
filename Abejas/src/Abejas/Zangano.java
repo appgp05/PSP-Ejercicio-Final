@@ -65,7 +65,7 @@ public class Zangano extends Thread {
                 dataInputStream = new DataInputStream(inputStream);
 
                 System.out.println("Zangano " + id + " - Esperando el alimento");
-                boolean haComido = dataInputStream.readBoolean();
+                boolean mielConsumida = dataInputStream.readBoolean();
                 System.out.println("Zangano " + id + " - Comida ingerida");
 
                 {

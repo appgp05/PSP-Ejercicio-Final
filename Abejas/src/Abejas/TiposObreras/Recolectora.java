@@ -24,13 +24,13 @@ public class Recolectora extends Obrera {
 
                 int tiempoParaLaTarea = new Random().nextInt(4, 8);
 
-                System.out.println("Preparando miel. Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
+                System.out.println("Recolectora" + id + " - Preparando miel. Tiempo de espera estimado: " + tiempoParaLaTarea + "s");
 
                 Thread.sleep(tiempoParaLaTarea * 1000);
 
-                System.out.println("Miel preparada");
+                System.out.println("Recolectora" + id + " - Miel preparada");
 
-                System.out.println("Entrando a la colmena");
+                System.out.println("Recolectora" + id + " - Entrando a la recepcion de la colmena");
 
                 Socket socket = new Socket("127.0.0.1", 3000);
 
@@ -42,16 +42,23 @@ public class Recolectora extends Obrera {
 
                 dataOutputStream.writeUTF("Recolectora");
 
-                System.out.println("Dejando la miel en la colmena");
+                System.out.println("Recolectora" + id + " - Dejando la miel en la colmena");
                 boolean mielDejada = dataInputStream.readBoolean();
-                System.out.println("Miel dejada");
+                System.out.println("Recolectora" + id + " - Miel dejada");
 
                 int tiempoDeDescanso = new Random().nextInt(2, 5);
 
-                System.out.println("Descansando. TIempo de espera estimado: " + tiempoDeDescanso + "s");
+                System.out.println("Recolectora" + id + " - Descansando. TIempo de espera estimado: " + tiempoDeDescanso + "s");
                 Thread.sleep(tiempoDeDescanso * 1000);
-                System.out.println("Descanso terminado");
+                System.out.println("Recolectora" + id + " - Descanso terminado");
 
+                {
+                    socket.close();
+                    inputStream.close();
+                    dataInputStream.close();
+                    outputStream.close();
+                    dataOutputStream.close();
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

@@ -44,13 +44,13 @@ public class Nodriza extends Obrera {
                 OutputStream outputStream = socketCliente.getOutputStream();
                 DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
-                System.out.println("Nodriza " + idNodriza + " - Zángano encontrdo");
+                System.out.println("Nodriza " + idNodriza + " - Zángano encontrado");
 
                 System.out.println("Nodriza " + idNodriza + " - Cogiendo miel");
                 do{
-                    boolean flag = Main.gestionarMiel(-1);
+                    boolean mielGestionada = Main.gestionarMiel(-1);
 
-                    if(flag == false){
+                    if(mielGestionada == false){
 
                     } else {
                         break;
