@@ -17,7 +17,7 @@ public class Zangano extends Thread {
     @Override
     public void run() {
         preguntarContrasenaReina();
-        
+
         System.out.println("Recolectora" + id + " - contrasena: " + contrasena);
 
         boolean seguirBuscando = true;
