@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             despertarReina();
-            despertarNodrizas();
+            despertarNodrizas(5);
 
             ServerSocket socketServidor = new ServerSocket(3000);
 
@@ -41,22 +41,28 @@ public class Main {
         reina.start();
     }
 
-    private static void despertarNodrizas(){
-        Nodriza nodriza1 = new Nodriza(1);
-        Nodriza nodriza2 = new Nodriza(2);
-        Nodriza nodriza3 = new Nodriza(3);
-        Nodriza nodriza4 = new Nodriza(4);
-        Nodriza nodriza5 = new Nodriza(5);
-
-        nodrizas.add(nodriza1);
-        nodrizas.add(nodriza2);
-        nodrizas.add(nodriza3);
-        nodrizas.add(nodriza4);
-        nodrizas.add(nodriza5);
-
-        for(Nodriza nodriza : nodrizas){
+    private static void despertarNodrizas(int cantidad){
+        for(int i = 1; i <= cantidad; i++){
+            Nodriza nodriza = new Nodriza(i);
+            nodrizas.add(nodriza);
             nodriza.start();
         }
+
+//        Nodriza nodriza1 = new Nodriza(1);
+//        Nodriza nodriza2 = new Nodriza(2);
+//        Nodriza nodriza3 = new Nodriza(3);
+//        Nodriza nodriza4 = new Nodriza(4);
+//        Nodriza nodriza5 = new Nodriza(5);
+//
+//        nodrizas.add(nodriza1);
+//        nodrizas.add(nodriza2);
+//        nodrizas.add(nodriza3);
+//        nodrizas.add(nodriza4);
+//        nodrizas.add(nodriza5);
+
+//        for(Nodriza nodriza : nodrizas){
+//            nodriza.start();
+//        }
     }
 
     public static synchronized Nodriza buscarNodrizas(){
